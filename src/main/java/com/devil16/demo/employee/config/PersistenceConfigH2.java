@@ -2,6 +2,7 @@ package com.devil16.demo.employee.config;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -40,7 +41,7 @@ public class PersistenceConfigH2 {
 	 * 
 	 * @return DataSource object
 	 */
-	@Bean (name = "DataSourceH2", destroyMethod = "")
+	@Bean (name = "DataSourceH2", destroyMethod = StringUtils.EMPTY)
 	public DataSource dataSourceH2() {
 		
 		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
@@ -55,7 +56,7 @@ public class PersistenceConfigH2 {
 	 * @param dataSourceH2
 	 * @return SqlSessionFactory object
 	 */
-	@Bean (name = "SqlSessionFactoryH2", destroyMethod = "")
+	@Bean (name = "SqlSessionFactoryH2", destroyMethod = StringUtils.EMPTY)
 	public SqlSessionFactory sqlSessionFactoryH2(
 			@Qualifier ("DataSourceH2") final DataSource dataSourceH2) throws Exception{
 		

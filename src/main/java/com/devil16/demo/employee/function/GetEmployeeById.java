@@ -7,6 +7,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.devil16.demo.employee.dto.EmployeeDto;
+import com.devil16.demo.employee.exception.EmployeeException;
+import com.devil16.demo.employee.exception.EmployeeExceptionConstants;
+import com.devil16.demo.employee.exception.EmployeeExceptionResource;
+import com.devil16.demo.employee.response.EmployeeResponse;
 import com.devil16.demo.employee.service.EmployeeService;
 
 /**
@@ -32,17 +36,37 @@ import com.devil16.demo.employee.service.EmployeeService;
 @Scope("prototype")
 public class GetEmployeeById implements Function<EmployeeDto, EmployeeDto> {
 
+	@Autowired
+	private EmployeeService employeeService;
 
 	@Autowired
-	private EmployeeService tpsDevService;
+	private EmployeeResponse employeeResponse;
 
 	@Override
-	public EmployeeDto apply(EmployeeDto tpsDevDto) {
+	public EmployeeDto apply(EmployeeDto employeeDto) {
+		
 		try {
-			return tpsDevService.convertEntityToDto(tpsDevService.getEntityById(tpsDevService.convertDtoToEntity(tpsDevDto)));
+			
+			return employeeResponse.employeeDetailsSuccessResponse(
+					employeeService.getEmployeeById(employeeDto));
+			
+		} catch (EmployeeException ee) {
+			
+			return employeeResponse.employeeDetailsExceptionResponse(ee);
+			
 		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			
+			EmployeeException ee = EmployeeException.
+					builder().
+					errorCode(EmployeeExceptionConstants.ED_UNKN.getErrorCode()).
+					errorDescription(EmployeeExceptionConstants.ED_UNKN.getErrorDescription()).
+					throwable(e).
+					requestObject(employeeDto).
+					exceptionResource(EmployeeExceptionResource.GetEmployeeById).
+					build();
+			
+			return employeeResponse.employeeDetailsExceptionResponse(ee);
+			
 		}
 
 	}

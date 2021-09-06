@@ -13,6 +13,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * EmployeeDto class -
  * 
@@ -52,19 +54,19 @@ public class EmployeeDto {
 	 * 8-byte String uniquely identifies each employee  
 	 */
 	@Builder.Default
-	private String commitId = "";
+	private String commitId = StringUtils.EMPTY;
 	
 	/**
 	 * first name of the employee
 	 */
 	@Builder.Default
-	private String firstName = "";
+	private String firstName = StringUtils.EMPTY;
 	
 	/**
 	 * last name of the emplyee
 	 */
 	@Builder.Default
-	private String lastName = "";
+	private String lastName = StringUtils.EMPTY;
 	
 	/**
 	 * type of employment with the firm
@@ -76,13 +78,13 @@ public class EmployeeDto {
 	 * billing link for cost-to-company for the employee 
 	 */
 	@Builder.Default
-	private String costBillLink = "";
+	private String costBillLink = StringUtils.EMPTY;
 	
 	/**
 	 * settlement link for cost-to-company for the employee 
 	 */
 	@Builder.Default
-	private String costSettleLink = "";
+	private String costSettleLink = StringUtils.EMPTY;
 	
 	/**
 	 * designation of the employee
@@ -106,13 +108,13 @@ public class EmployeeDto {
 	 * firm assigned email-Id for the employee
 	 */
 	@Builder.Default
-	private String emailId = "";
+	private String emailId = StringUtils.EMPTY;
 	
 	/**
 	 * firm assigned phone for the employee
 	 */
 	@Builder.Default
-	private String phone = "";
+	private String phone = StringUtils.EMPTY;
 	
 	/**
 	 * status of the employee

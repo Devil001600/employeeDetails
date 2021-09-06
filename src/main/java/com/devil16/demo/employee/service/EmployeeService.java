@@ -2,6 +2,7 @@ package com.devil16.demo.employee.service;
 
 import com.devil16.demo.employee.dto.EmployeeDto;
 import com.devil16.demo.employee.entity.EmployeeEntity;
+import com.devil16.demo.employee.exception.EmployeeException;
 
 /**
  * EmployeeService interface -
@@ -17,25 +18,37 @@ import com.devil16.demo.employee.entity.EmployeeEntity;
 public interface EmployeeService {
 	
 	/**
+	 * getEmployeeId() - 
+	 * 
+	 * fetches an Employee's details by the EmployeeId
+	 * 
+	 * @param employeeDto
+	 * @return EmployeeDto object
+	 * @throws EmployeeException 
+	 */
+	public EmployeeDto getEmployeeById(EmployeeDto employeeDto) throws EmployeeException;
+	
+	/**
 	 * convertDtoToEntity() - 
 	 * 
 	 * creates an EmployeeEntity object from the values of an EmployeeDto object  
 	 * 
-	 * @param tpsDevDto
+	 * @param employeeDto
 	 * @return EmployeeEntity object
+	 * @throws EmployeeException 
 	 */
-	public EmployeeEntity convertDtoToEntity(EmployeeDto employeeDto);
+	public EmployeeEntity convertDtoToEntity(EmployeeDto employeeDto) throws EmployeeException;
 	
 	/**
 	 * getEntityById() - 
 	 * 
 	 * fetches the details of an Employee from the dataBase by their employeeId
 	 * 
-	 * @param tpsDev
+	 * @param employeeEntity
 	 * @return EmployeeEntity object
-	 * @throws Exception
+	 * @throws EmployeeException
 	 */
-	public EmployeeEntity getEntityById(EmployeeEntity employeeEntity) throws Exception;
+	public EmployeeEntity getEntityById(EmployeeEntity employeeEntity) throws EmployeeException;
 	
 	/**
 	 * convertEntityToDto() - 
@@ -44,7 +57,8 @@ public interface EmployeeService {
 	 * 
 	 * @param employeeEntity
 	 * @return
+	 * @throws EmployeeException 
 	 */
-	public EmployeeDto convertEntityToDto(EmployeeEntity employeeEntity);
+	public EmployeeDto convertEntityToDto(EmployeeEntity employeeEntity) throws EmployeeException;
 
 }
