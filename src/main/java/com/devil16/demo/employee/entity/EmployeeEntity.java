@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeEntity {
+public final class EmployeeEntity {
 	
 	private String commit_Id;
 	private String first_Name;
