@@ -25,7 +25,7 @@ import org.apache.commons.lang3.StringUtils;
  * @since 2021-02-11
  * 
  * @see com.devil16.demo.employee.entity.EmployeeEntity
- * @see com.devil16.demo.employee.dtomapper.EmployeeDtoMapper
+ * @see com.devil16.demo.employee.dto.mapper.EmployeeDtoMapper
  */
 
 /*
@@ -48,7 +48,7 @@ import org.apache.commons.lang3.StringUtils;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeDto {
+public final class EmployeeDto {
 	
 	/**
 	 * 8-byte String uniquely identifies each employee  

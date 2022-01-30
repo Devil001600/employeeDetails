@@ -16,7 +16,7 @@ import lombok.Singular;
 @Data
 @Builder
 @EqualsAndHashCode(callSuper=false)
-public class EmployeeException extends Exception {
+public final class EmployeeException extends Exception {
 	
 	/*
 	 * classes that implement the java.io.Serializable (directly or via their parent class) can be serialized

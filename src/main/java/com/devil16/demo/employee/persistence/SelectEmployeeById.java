@@ -3,6 +3,8 @@ package com.devil16.demo.employee.persistence;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.devil16.demo.employee.dao.EmployeeDao;
 import com.devil16.demo.employee.entity.EmployeeEntity;
@@ -21,7 +23,8 @@ import com.devil16.demo.employee.entity.EmployeeEntity;
  * @see com.devil16.demo.employee.config.PersistenceConfigH2
  * @see com.devil16.demo.employee.dao.EmployeeDao
  */
-public class SelectEmployeeById {
+@Repository
+public class SelectEmployeeById implements EmployeeDao {
 	
 	@Autowired
 	@Qualifier ("SqlSessionFactoryH2")
@@ -30,7 +33,9 @@ public class SelectEmployeeById {
 	@Autowired
 	EmployeeDao employeeDao;
 	
-	public EmployeeEntity selectEmployeeById(String commitId) throws Exception {
+	@Transactional
+	@Override
+	public EmployeeEntity selectEmployeeByCommitId(String commitId) throws Exception {
 		
 		return employeeDao.selectEmployeeByCommitId(commitId);
 		

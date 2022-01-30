@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.devil16.demo.employee.dao.EmployeeDao;
 import com.devil16.demo.employee.dto.EmployeeDto;
-import com.devil16.demo.employee.dtomapper.EmployeeDtoMapper;
+import com.devil16.demo.employee.dto.mapper.EmployeeDtoMapper;
 import com.devil16.demo.employee.entity.EmployeeEntity;
 import com.devil16.demo.employee.exception.EmployeeException;
 import com.devil16.demo.employee.exception.EmployeeExceptionConstants;

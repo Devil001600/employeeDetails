@@ -1,4 +1,4 @@
-package com.devil16.demo.employee.dtomapper;
+package com.devil16.demo.employee.dto.mapper;
 
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
