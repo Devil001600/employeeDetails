@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
  * @since 2021-02-11
  * 
  * @see com.devil16.demo.employee.entity.EmployeeDto
- * @see com.devil16.demo.employee.dtomapper.EmployeeDtoMapper
+ * @see com.devil16.demo.employee.dto.mapper.EmployeeDtoMapper
  */
 
 /*

@@ -34,6 +34,8 @@
 		<mybatis-spring-boot-starter.version>2.2.0</mybatis-spring-boot-starter.version>
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 		<lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
+		<javax-json.version>1.1.4</javax-json.version>
+		<maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
 		<maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
 		<jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
 		<junit-dep.version>4.8.2</junit-dep.version>
@@ -73,6 +75,11 @@
 		</dependency>
 
 		<dependency>
+        	<groupId>org.springframework.boot</groupId>
+        	<artifactId>spring-boot-starter-test</artifactId>
+      	</dependency>
+
+		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
@@ -80,6 +87,12 @@
 		<dependency>
 			<groupId>javax.json</groupId>
 			<artifactId>javax.json-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+			<version>${javax-json.version}</version>
 		</dependency>
 
 		<dependency>
@@ -204,6 +217,21 @@
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>${maven-dependency-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>tree</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>tree</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
 				<version>${maven-enforcer-plugin.version}</version>
 				<configuration combine.self="override"/>
@@ -267,6 +295,12 @@
 					<execution>
 						<id>default-report</id>
 						<phase>post-integration-test</phase>
+						<configuration>
+							<excludes>
+								<exclude>**/employee/response/*.class</exclude>
+								<exclude>**/employee/EmployeeDetails.class</exclude>
+							</excludes>
+						</configuration>
 						<goals>
 							<goal>report</goal>
 						</goals>
