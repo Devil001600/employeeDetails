@@ -20,5 +20,40 @@
 				last_working_date as "last_Working_Date"
         FROM employee_details
         where commit_id = #{commit_Id}
-    </select>    
+    </select>
+    
+    <select id="selectAllEmployees" resultMap="employeeEntityMap">
+        SELECT 	commit_id as "commit_Id", 
+        		first_name as "first_Name", 
+        		last_name as "last_Name",
+        		type as "type", 
+        		cost_bill_link as "cost_Bill_Link",
+    			cost_settle_link as "cost_Settle_Link",
+    			designation as "designation",
+				team as "team",
+				line_of_business as "line_Of_Business",
+				email_id as "email_Id",
+				phone as "phone",
+				status as "status",
+				date_of_joining as "date_Of_Joining",
+				last_working_date as "last_Working_Date"
+        FROM employee_details
+    </select>
+    
+    <resultMap id="employeeEntityMap" type="EmployeeEntity">
+        <id property="commit_Id" column="commit_Id" />
+  		<result property="first_Name" column="first_name"/>
+  		<result property="last_Name" column="last_Name"/>
+  		<result property="type" column="type"/>
+  		<result property="cost_Bill_Link" column="cost_Bill_Link"/>
+  		<result property="cost_Settle_Link" column="cost_Settle_Link"/>
+  		<result property="designation" column="designation"/>
+  		<result property="team" column="team"/>
+  		<result property="line_Of_Business" column="line_Of_Business"/>
+  		<result property="email_Id" column="email_Id"/>
+  		<result property="phone" column="phone"/>
+  		<result property="status" column="status"/>
+  		<result property="date_Of_Joining" column="date_Of_Joining"/>
+  		<result property="last_Working_Date" column="last_Working_Date"/>
+    </resultMap>    
 </mapper>

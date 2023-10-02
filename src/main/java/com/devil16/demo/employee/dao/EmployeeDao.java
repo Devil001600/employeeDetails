@@ -1,5 +1,7 @@
 package com.devil16.demo.employee.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.devil16.demo.employee.entity.EmployeeEntity;
@@ -28,5 +30,7 @@ import com.devil16.demo.employee.entity.EmployeeEntity;
 public interface EmployeeDao {
 	
 	EmployeeEntity selectEmployeeByCommitId(String id) throws Exception;
+	
+	List<EmployeeEntity> selectAllEmployees() throws Exception;
 	
 }

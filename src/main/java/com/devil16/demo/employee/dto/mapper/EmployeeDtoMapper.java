@@ -1,5 +1,7 @@
 package com.devil16.demo.employee.dto.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -85,5 +87,30 @@ public interface EmployeeDtoMapper {
 				@Mapping(source = "last_Working_Date", target = "lastWorkingDate")
 	})
 	EmployeeDto employeeEntityToEmployeeDtoMapper(EmployeeEntity employeeEntity);
+	
+	/**
+	 * employeeEntitiesToEmployeeDtosMapper() - 
+	 * 
+	 * maps EmployeeEntity Objects to EmployeeDto objects
+	 * 
+	 * @param EmployeeEntity list
+	 * @return EmployeeDto list
+	 */
+	@Mappings({ @Mapping(source = "commit_Id", target = "commitId"),
+				@Mapping(source = "first_Name", target = "firstName"),
+				@Mapping(source = "last_Name", target = "lastName"),
+				@Mapping(source = "type", target = "type"),
+				@Mapping(source = "cost_Bill_Link", target = "costBillLink"),
+				@Mapping(source = "cost_Settle_Link", target = "costSettleLink"),
+				@Mapping(source = "designation", target = "designation"),
+				@Mapping(source = "team", target = "team"),
+				@Mapping(source = "line_Of_Business", target = "lineOfBusiness"),
+				@Mapping(source = "email_Id", target = "emailId"),
+				@Mapping(source = "phone", target = "phone"),
+				@Mapping(source = "status", target = "status"),
+				@Mapping(source = "date_Of_Joining", target = "dateOfJoining"),
+				@Mapping(source = "last_Working_Date", target = "lastWorkingDate")
+	})
+	List<EmployeeDto> employeeEntitiesToEmployeeDtosMapper(List<EmployeeEntity> employeeEntities);
 
 }

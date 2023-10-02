@@ -1,5 +1,7 @@
 package com.devil16.demo.employee.persistence;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -38,6 +40,14 @@ public class SelectEmployeeById implements EmployeeDao {
 	public EmployeeEntity selectEmployeeByCommitId(String commitId) throws Exception {
 		
 		return employeeDao.selectEmployeeByCommitId(commitId);
+		
+	}
+
+	@Transactional
+	@Override
+	public List<EmployeeEntity> selectAllEmployees() throws Exception {
+		
+		return employeeDao.selectAllEmployees();
 		
 	}
 

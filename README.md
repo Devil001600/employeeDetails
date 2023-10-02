@@ -1,10 +1,10 @@
 # employeeDetails
 
-a dummy spring-boot application that lets the user manipulate a data-base via REST end-points
+a dummy spring-boot application that lets the user fetch details from an employee dataBase.
 
 ## About the Application
 
-* this Application provides the user with various REST end-points to interact with (perform CRUD operations) on a DataBase
+* this Application provides the user with various two REST end-points
 * the DataBase houses details of hypothetical employees of an Organization
 * the full list of employees can be viewed at the h2-console (http://localhost:8081/h2-console)
   
@@ -13,7 +13,11 @@ a dummy spring-boot application that lets the user manipulate a data-base via RE
 * the source can be downloaded to a user's local and run
 * the user would then invoke the following REST end-points available at (http://localhost:8081//EmployeeDetails/v1)
  
-#### /getEmployeeById
+#### GET/getEmployees
+
+* fetches details of all the Employees
+
+#### POST/getEmployeeById
 
 * fetches the details of an Employee by their EmployeeID
 * the JSON in the src/main/resources/input path can be used as an input

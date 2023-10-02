@@ -1,7 +1,9 @@
 package com.devil16.demo.employee.service;
 
+import java.util.List;
 import java.util.Objects;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -159,6 +161,98 @@ public class EmployeeServiceImpl implements EmployeeService {
 			
 		return employeeEntityFetched; 
 		
+	}
+	
+	@Override
+	public List<EmployeeDto> getEmployees() throws EmployeeException {
+		
+		log.debug("selection of Employee Details has started!");
+		
+		return this.convertEntitiesToDtos(this.getEntities());
+		
+	}
+	
+	@Override
+	public List<EmployeeEntity> getEntities() throws EmployeeException {
+		
+		log.debug("employee details being fetched");
+		
+		List<EmployeeEntity> employeeEntitiesFetched = List.of();
+		
+		try {
+			
+			employeeEntitiesFetched = employeeDao.selectAllEmployees();
+			
+		} catch (PersistenceException pe) {
+			
+			throw EmployeeException.
+			builder().
+			errorCode(EmployeeExceptionConstants.ED_GET_ED_FAIL.getErrorCode()).
+			errorDescription(EmployeeExceptionConstants.ED_GET_ED_FAIL.getErrorDescription()).
+			throwable(pe).
+			requestObject(StringUtils.EMPTY).
+			exceptionResource(EmployeeExceptionResource.SelectEmployeeByCommitId).
+			build();
+			
+		} catch (Exception e) {
+			
+			throw EmployeeException.
+			builder().
+			errorCode(EmployeeExceptionConstants.ED_GET_ED_FAIL.getErrorCode()).
+			errorDescription(EmployeeExceptionConstants.ED_GET_ED_FAIL.getErrorDescription()).
+			throwable(e).
+			requestObject(StringUtils.EMPTY).
+			exceptionResource(EmployeeExceptionResource.SelectEmployeeByCommitId).
+			build();
+			
+		}
+		
+		if (Objects.isNull(employeeEntitiesFetched)) {
+			
+			throw EmployeeException.
+			builder().
+			errorCode(EmployeeExceptionConstants.ED_NO_ED_FOUND.getErrorCode()).
+			errorDescription(EmployeeExceptionConstants.ED_NO_ED_FOUND.getErrorDescription()).
+			throwable(new EmptyResultDataAccessException(1)).
+			requestObject(StringUtils.EMPTY).
+			exceptionResource(EmployeeExceptionResource.SelectEmployeeByCommitId).
+			build();
+			
+		} else {
+			
+			log.debug("employee details fetched : {}", employeeEntitiesFetched);
+			
+		}
+			
+		return employeeEntitiesFetched; 
+		
+	}
+	
+	@Override
+	public List<EmployeeDto> convertEntitiesToDtos(List<EmployeeEntity> employeeEntities) throws EmployeeException {
+		
+		log.debug("employeeEntities recieved :{}", employeeEntities);
+		
+		List<EmployeeDto> employeeDtos = List.of();
+		
+		try {
+			
+			employeeDtos = employeeDtoMapper.employeeEntitiesToEmployeeDtosMapper(employeeEntities);
+			
+		} catch (Exception e) {
+			
+			throw EmployeeException.
+			builder().
+			errorCode(EmployeeExceptionConstants.ED_MAP_ED_FAIL.getErrorCode()).
+			errorDescription(EmployeeExceptionConstants.ED_MAP_ED_FAIL.getErrorDescription()).
+			throwable(e).
+			requestObject(employeeEntities).
+			exceptionResource(EmployeeExceptionResource.EmployeeEntityToEmployeeDtoMapper).
+			build();
+			
+		}
+		
+		return employeeDtos;
 	}
 	
 }

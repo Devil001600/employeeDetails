@@ -1,5 +1,7 @@
 package com.devil16.demo.employee.service;
 
+import java.util.List;
+
 import com.devil16.demo.employee.dto.EmployeeDto;
 import com.devil16.demo.employee.entity.EmployeeEntity;
 import com.devil16.demo.employee.exception.EmployeeException;
@@ -60,5 +62,37 @@ public interface EmployeeService {
 	 * @throws EmployeeException 
 	 */
 	public EmployeeDto convertEntityToDto(EmployeeEntity employeeEntity) throws EmployeeException;
+	
+	/**
+	 * getEmployees() - 
+	 * 
+	 * fetches an all the Employees' details
+	 * 
+	 * @return EmployeeDto list
+	 * @throws EmployeeException 
+	 */
+	public List<EmployeeDto> getEmployees() throws EmployeeException;
+	
 
+	/**
+	 * getEntities() - 
+	 * 
+	 * fetches details of Employees from the dataBase
+	 * 
+	 * @return EmployeeEntity list
+	 * @throws EmployeeException
+	 */
+	public List<EmployeeEntity> getEntities() throws EmployeeException;
+	
+	/**
+	 * convertEntitiesToDtos() - 
+	 * 
+	 * creates an EmployeeDto object from the values of an EmployeeEntity object
+	 * 
+	 * @param employeeEntity
+	 * @return
+	 * @throws EmployeeException 
+	 */
+	public List<EmployeeDto> convertEntitiesToDtos(List<EmployeeEntity> employeeEntities) throws EmployeeException;
+	
 }
