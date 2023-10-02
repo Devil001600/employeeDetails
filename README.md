@@ -1,12 +1,14 @@
 # employeeDetails
 
-a dummy spring-boot application that lets the user fetch details from an employee dataBase.
+a dummy spring-boot application that lets the user fetch details from a hypothetical employee dataBase.
+the end-points are exposed via **spring-cloud** functionalities of the Spring framework; instead of REST end-points.
+**mybatis** framework has been used for Object-Relational-Mapping.
 
 ## About the Application
 
-* this Application provides the user with various two REST end-points
-* the DataBase houses details of hypothetical employees of an Organization
-* the full list of employees can be viewed at the h2-console (http://localhost:8081/h2-console)
+* this Application provides the user with two end-points to query a dataBase.
+* the DataBase houses details of employees of a hypothetical Organization.
+* the full list of employees can be viewed at the h2-console (http://localhost:8081/h2-console).
   
 ## Using the Application
 
