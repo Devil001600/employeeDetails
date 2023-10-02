@@ -18,3 +18,5 @@ target/
 
 #MQ
 mqjms.*
+/.apt_generated/
+/.apt_generated_tests/
